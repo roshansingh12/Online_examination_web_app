@@ -1,0 +1,387 @@
+<html>
+<head>
+<link rel="stylesheet" href="ques1.css">
+</head>
+<style>
+body{
+background-color:silver;
+}
+.title input[type=text]{
+border:1px solid blue;
+border-radius:5px;
+outline:none;
+width:60%;
+height:50px;
+font-size:15px;
+color : lightblack;
+margin-left:20%;
+}
+.box{
+margin:2% 20% 4% 20%;
+background:white;
+border-radius:20px;
+width:60%;
+}
+.ques_cont{
+padding-left:150px;
+padding-top:40px;
+padding-bottom:40px;
+
+}
+.ques_cont1{
+padding-left:150px;
+padding-top:40px;
+padding-bottom:20px;
+display: none;
+z-index: 1;
+}
+input[type=text]{
+border:1px solid silver;
+border-radius:5px;
+outline:none;
+width:80%;
+height:50px;
+font-size:15px;
+color : lightblack;
+}
+input[type=number]{
+border:1px solid blue;
+border-radius:5px;
+outline:none;
+width:40%;
+height:50px;
+font-size:15px;
+}
+ input[type=submit]{
+border:1px solid green;
+border-radius:5px;
+background:white;
+outline:none;
+width:10%;
+height:50px;
+font-size:15px;
+float:right;
+margin-top:10px;
+}
+button[type=button]{
+border:none;
+border-radius:5px;
+background:orange;
+outline:none;
+width:10%;
+height:50px;
+font-size:15px;
+float:right;
+}
+
+.c_list select{
+outline:none;
+border-radius:5px;
+padding:10px;
+width:60%;
+border:1px solid red;
+margin-left:20%;
+}
+
+.result{
+border-radius:15px;
+margin-left:100px;
+width:80%;
+margin-top:60px;
+background:orange;
+padding-bottom:10px;
+}
+.result input[type=text]{
+border:1px solid white;
+border-radius:5px;
+outline:none;
+width:80%;
+margin-left:10%;
+height:50px;
+font-size:15px;
+color : lightblack;
+}
+.result input[type=password]{
+border:1px solid white;
+border-radius:5px;
+outline:none;
+width:80%;
+margin-left:10%;
+height:50px;
+font-size:15px;
+color : lightblack;
+}
+.result button{
+outline:none;
+border:blue;
+margin-left:10%;
+padding:10px;
+background:white;
+float:center;
+cursor:pointer;
+}
+.result select{
+margin-left:20%;
+outline:none;
+margin-left:10%;
+border:1px solid orange;
+border-radius:5px;
+padding:10px;
+}
+option{
+padding:10px;
+outline:none;
+}
+</style>
+
+<body>
+{% if user.is_authenticated %}
+<form method="post"  action="creating_test">{% csrf_token %}
+<div class="title"><br><input type="text" name="title" placeholder="TITLE OF TEST *"></div><br>
+<div class="c_list">
+<select name="cls" >
+<option >SELECT CLASS *</option>
+{% for class in class_list %}
+    <option value="{{class}}">{{class}}</option>
+{% endfor %}
+</select>
+</div>
+<div class="box">
+<div class="ques_cont"  id="id00"><input type="number" min="1" max="10" placeholder="Marks *" value="10" name="m1">
+<br><br>
+<input type="text" placeholder="QUESTION *" name="q1">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 1 *" name="a1">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 2 *" name="a2">
+<br><br>
+<input type="text" placeholder="ANSWER 3 *" name="a3">
+<br><br>
+<input type="text" placeholder="ANSWER 4 *" name="a4">
+<br>
+<br>
+<input type="number" min="1" max="4" placeholder="Correct Option *" name="c_a1">
+&nbsp;&nbsp;&nbsp;<button type="button" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">ADD QUESTION</button>
+
+</div>
+
+<div class="ques_cont1"  id="id01"><input type="number" min="1" max="10" placeholder="Marks *" value="10" name="m2">
+<br><br>
+<input type="text" placeholder="QUESTION *" name="q2">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 1 *" name="a5">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 2 *" name="a6">
+<br><br>
+<input type="text" placeholder="ANSWER 3 *" name="a7">
+<br><br>
+<input type="text" placeholder="ANSWER 4 *" name="a8">
+<br>
+<br>
+<input type="number" min="1" max="4" placeholder="Correct Option *" name="c_a2">
+&nbsp;&nbsp;&nbsp;<button type="button" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">ADD QUESTION</button>
+
+</div>
+
+<div class="ques_cont1"  id="id02"><input type="number" min="1" max="10" placeholder="Marks *" value="10" name="m3">
+<br><br>
+<input type="text" placeholder="QUESTION *" name="q3">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 1 *" name="a9">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 2 *" name="a10">
+<br><br>
+<input type="text" placeholder="ANSWER 3 *" name="a11">
+<br><br>
+<input type="text" placeholder="ANSWER 4 *" name="a12">
+<br>
+<br>
+<input type="number" min="1" max="4" placeholder="Correct Option *" name="c_a3">
+&nbsp;&nbsp;&nbsp;<button type="button" onclick="document.getElementById('id03').style.display='block'" style="width:auto;">ADD QUESTION</button>
+
+</div>
+<div class="ques_cont1"  id="id03"><input type="number" min="1" max="10" placeholder="Marks *" value="10" name="m4">
+<br><br>
+<input type="text" placeholder="QUESTION *" name="q4">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 1 *" name="a13">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 2 *" name="a14">
+<br><br>
+<input type="text" placeholder="ANSWER 3 *" name="a15">
+<br><br>
+<input type="text" placeholder="ANSWER 4 *" name="a16">
+<br>
+<br>
+<input type="number" min="1" max="4" placeholder="Correct Option *" name="c_a4">
+&nbsp;&nbsp;&nbsp;<button type="button" onclick="document.getElementById('id04').style.display='block'" style="width:auto;">ADD QUESTION</button>
+
+</div>
+<div class="ques_cont1"  id="id04"><input type="number" min="1" max="10" placeholder="Marks *" value="10" name="m5">
+<br><br>
+<input type="text" placeholder="QUESTION *" name="q5">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 1 *" name="a17">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 2 *" name="a18">
+<br><br>
+<input type="text" placeholder="ANSWER 3 *" name="a19">
+<br><br>
+<input type="text" placeholder="ANSWER 4 *" name="a20">
+<br>
+<br>
+<input type="number" min="1" max="4" placeholder="Correct Option *" name="c_a5">
+&nbsp;&nbsp;&nbsp;<button type="button" onclick="document.getElementById('id05').style.display='block'" style="width:auto;">ADD QUESTION</button>
+
+</div>
+<div class="ques_cont1"  id="id05"><input type="number" min="1" max="10" placeholder="Marks *" value="10" name="m6">
+<br><br>
+<input type="text" placeholder="QUESTION *" name="q6">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 1 *" name="a21">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 2 *" name="a22">
+<br><br>
+<input type="text" placeholder="ANSWER 3 *" name="a23">
+<br><br>
+<input type="text" placeholder="ANSWER 4 *" name="a24">
+<br>
+<br>
+<input type="number" min="1" max="4" placeholder="Correct Option *" name="c_a6">
+&nbsp;&nbsp;&nbsp;<button type="button" onclick="document.getElementById('id06').style.display='block'" style="width:auto;">ADD QUESTION</button>
+
+</div>
+<div class="ques_cont1"  id="id06"><input type="number" min="1" max="10" placeholder="Marks *" value="10" name="m7">
+<br><br>
+<input type="text" placeholder="QUESTION *" name="q7">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 1 *" name="a25">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 2 *" name="a26">
+<br><br>
+<input type="text" placeholder="ANSWER 3 *" name="a27">
+<br><br>
+<input type="text" placeholder="ANSWER 4 *" name="a28">
+<br>
+<br>
+<input type="number" min="1" max="4" placeholder="Correct Option *">
+&nbsp;&nbsp;&nbsp;<button type="button" onclick="document.getElementById('id07').style.display='block'" style="width:auto;">ADD QUESTION</button>
+
+</div>
+<div class="ques_cont1"  id="id07"><input type="number" min="1" max="10" placeholder="Marks *" value="10" name="m8">
+<br><br>
+<input type="text" placeholder="QUESTION *" name="q8">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 1 *" name="a29">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 2 *" name="a30">
+<br><br>
+<input type="text" placeholder="ANSWER 3 *" name="a31">
+<br><br>
+<input type="text" placeholder="ANSWER 4 *" name="a32">
+<br>
+<br>
+<input type="number" min="1" max="4" placeholder="Correct Option *" name="c_a8">
+&nbsp;&nbsp;&nbsp;<button type="button" onclick="document.getElementById('id08').style.display='block'" style="width:auto;">ADD QUESTION</button>
+
+</div>
+<div class="ques_cont1"  id="id08"><input type="number" min="1" max="10" placeholder="Marks *" value="10" name="m9">
+<br><br>
+<input type="text" placeholder="QUESTION *" name="q9">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 1 *" name="a33">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 2 *" name="a34">
+<br><br>
+<input type="text" placeholder="ANSWER 3 *" name="a35">
+<br><br>
+<input type="text" placeholder="ANSWER 4 *" name="a36">
+<br>
+<br>
+<input type="number" min="1" max="4" placeholder="Correct Option *" name="c_a9">
+&nbsp;&nbsp;&nbsp;<button type="button" onclick="document.getElementById('id09').style.display='block'" style="width:auto;">ADD QUESTION</button>
+
+</div>
+
+<div class="ques_cont1"  id="id09"><input type="number" min="1" max="10" placeholder="Marks *" value="10" name="m10">
+<br><br>
+<input type="text" placeholder="QUESTION *" name="q10">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 1 *" name="a37">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 2 *" name="a38">
+<br><br>
+<input type="text" placeholder="ANSWER 3 *" name="a39">
+<br><br>
+<input type="text" placeholder="ANSWER 4 *" name="a40">
+<br>
+<br>
+<input type="number" min="1" max="4" placeholder="Correct Option *" name="c_a10">
+&nbsp;&nbsp;&nbsp;<button type="button" onclick="document.getElementById('id010').style.display='block'" style="width:auto;">ADD QUESTION</button>
+
+</div>
+<div class="ques_cont1"  id="id010"><input type="number" min="1" max="10" placeholder="Marks *" value="10" name="m11">
+<br><br>
+<input type="text" placeholder="QUESTION *" name="q11">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 1 *" name="a41">
+<br>
+<br>
+<input type="text" placeholder="ANSWER 2 *" name="a42">
+<br><br>
+<input type="text" placeholder="ANSWER 3 *" name="a43">
+<br><br>
+<input type="text" placeholder="ANSWER 4 *" name="a44">
+<br>
+<br>
+<input type="number" min="1" max="4" placeholder="Correct Option *" name="c_a11">
+&nbsp;&nbsp;&nbsp;<button type="button" onclick="document.getElementById('id00').style.display='block'" style="width:auto;">ADD QUESTION</button>
+
+</div>
+
+<input type="submit">
+<script src="ques.js"></script>
+</div></form>
+{% else %}
+<div class="result">
+<br>
+<br>
+<form action="login" method="POST">
+<input type="text" placeholder="email : example@gmail.com" name="useremail">
+<br>
+<br>
+<input type="password" placeholder="Password" name="password">
+<br>
+<br>
+<select name="type" >
+<option value="faculty">FACULTY</option>
+</select>
+<a href="#"><button type="submit">LOG IN</button></a>
+</form>
+<br>
+<br>
+</div>
+{% endif %}
+</body>
+</html>

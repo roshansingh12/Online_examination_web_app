@@ -1,0 +1,55 @@
+<html>
+<head>
+<style>
+body{
+background:orange;
+}
+input[type=text]{
+border:1px solid silver;
+border-radius:5px;
+outline:none;
+width:80%;
+margin:1%;
+height:50px;
+font-size:15px;
+color : lightblack;
+}
+input[type=password]{
+border:1px solid silver;
+border-radius:5px;
+outline:none;
+width:80%;
+margin:1%;
+height:50px;
+font-size:15px;
+color : lightblack;
+}
+select{
+outline:none;
+margin-left:1%;
+border:1px solid orange;
+border-radius:5px;
+padding:10px;
+}
+button{
+border:none;
+display:inline-block;
+margin-left:10%;
+padding:10px;
+background:white;
+float:center;
+cursor:pointer;
+}
+option{
+outline:none;
+}
+</style>
+</head>
+<body>
+<form action='add_class' method='POST'>{% csrf_token %}
+<input type='text' name='class_name' placeholder='enter class name'><br>
+<br>
+<button type='submit' >ADD CLASS</button>
+</form>
+</body>
+</html>

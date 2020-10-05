@@ -1,0 +1,118 @@
+<html>
+<head>
+<style>
+body{
+background:skyblue;
+}
+.main{
+margin-top:5%;
+margin-left:27%;
+margin-bottom:5%;
+background:white;
+padding:20px;
+width:40%;
+border-radius:15px;
+}
+input[type=submit]{
+outline:none;
+color:green;
+padding:10px;
+float:right;
+border:1px solid green;
+margin-right:45%;
+border-radius:5px;
+background:white;
+cursor:pointer;
+}
+input[type=radio]{
+outline:none;
+border:1px solid blue;
+cursor:pointer;
+}
+button,button:focus{
+ouline:none;
+background:orange;
+border-radius:5px;
+float:right;
+border:1px solid white;
+margin-right:3%;
+padding:10px;
+}
+select{
+display:inline-block;
+padding:15px;
+border:1px solid white;
+border-radius:5px;
+background:white;
+overflow:hidden;
+outline:none;
+height:auto;
+}
+select:focus{
+display:inline-block;
+padding:15px;
+border:1px solid white;
+border-radius:5px;
+overflow:auto;
+outline:none;
+}
+select option{
+outline:none;
+border:1px solid silver;
+padding:10px;
+margin-bottom:10px;
+border-radius:5px;
+}
+</style>
+</head>
+<body>
+{% if user.is_authenticated %}
+
+<div class="main">
+{% if test_taken %}
+Test Has been taken !
+{% else %}
+<form action="submit_test" method="POST">{% csrf_token %}
+<input type="hidden" name="testname" value={{testname}}>
+<input type='hidden' name="num_of_qsns" value={{num_of_qsns}}>
+{% for ques_ans in ques_ans_list %}
+
+Question : {{ques_ans.0}} 
+<input type="hidden" name="ques{{ques_ans.7}}" value="{{ques_ans.0}}">
+<input type="hidden" name="cop{{ques_ans.7}}" value="{{ques_ans.5}}">
+<input type="hidden" name="marks{{ques_ans.7}}" value="{{ques_ans.6}}">
+ <button type='button'>{{ques_ans.6}}</button><br><br>
+<div class="ans">
+<select size="4" name="selected_ans_for qsn_{{ques_ans.7}}">
+<option   value="{{ques_ans.1}}">{{ques_ans.1}} <br></option><br><br>
+<option name={{ques_ans.7}}  value="{{ques_ans.2}}"> {{ques_ans.2}} </option><br><br>
+<option name={{ques_ans.7}}  value="{{ques_ans.3}}">  {{ques_ans.3}} </option><br><br>
+<option name={{ques_ans.7}}  value="{{ques_ans.4}}"> {{ques_ans.4}} </option><br><br>
+</select>
+</div>
+{% endfor %}
+<input type='submit' value="SUBMIT"><br><br>
+</form>
+{% endif %}
+</div>
+{% else %}
+<div class="result">
+<br>
+<br>
+<form action="login" method="POST">
+<input type="text" placeholder="email : example@gmail.com" name="useremail">
+<br>
+<br>
+<input type="password" placeholder="Password" name="password">
+<br>
+<br>
+<select name="type" >
+<option value="student">STUDENT</option>
+</select>
+<a href="#"><button type="submit">LOG IN</button></a>
+</form>
+<br>
+<br>
+</div>
+{% endif %}
+</body>

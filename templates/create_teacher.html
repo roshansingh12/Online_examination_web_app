@@ -1,0 +1,112 @@
+<html>
+<head>
+<style>
+body{
+background:orange;
+}
+input[type=text]{
+border:1px solid silver;
+border-radius:5px;
+outline:none;
+width:80%;
+margin:1%;
+height:50px;
+font-size:15px;
+color : lightblack;
+}
+input[type=password]{
+border:1px solid silver;
+border-radius:5px;
+outline:none;
+width:80%;
+margin:1%;
+height:50px;
+font-size:15px;
+color : lightblack;
+}
+select{
+outline:none;
+margin-left:1%;
+border:1px solid orange;
+border-radius:5px;
+padding:10px;
+}
+button{
+border:none;
+display:inline-block;
+margin-left:10%;
+padding:10px;
+background:white;
+float:center;
+cursor:pointer;
+}
+option{
+outline:none;
+}
+</style>
+</head>
+<body>
+{{error}}
+{% if user.is_authenticated %}
+{% if user_type %}
+<form action='add_teacher' method='post'>{% csrf_token %}
+<input type='text' name='firstname' placeholder='teacher first name'><br><br>
+<input type='text' name='lastname' placeholder='teacher last name'><br><br>
+<input type='text' name='username' placeholder='teacher email'><br><br>
+<input type='password' name='password1' placeholder='password'><br><br>
+<input type='password' name='password2' placeholder='confirm password'><br><br>
+ASSIGN CLASSES : <select name='class1'>
+<option value='None'>None</option>
+<option value="{{class_name.0}}">{{class_name.0}}</option>
+<option value="{{class_name.1}}">{{class_name.1}}</option>
+<option value="{{class_name.2}}">{{class_name.2}}</option>
+<option value="{{class_name.3}}">{{class_name.3}}</option>
+<option value="{{class_name.4}}">{{class_name.4}}</option>
+</select>
+
+<select name='class2'>
+<option value='None'>None</option>
+<option value="{{class_name.0}}">{{class_name.0}}</option>
+<option value="{{class_name.1}}">{{class_name.1}}</option>
+<option value="{{class_name.2}}">{{class_name.2}}</option>
+<option value="{{class_name.3}}">{{class_name.3}}</option>
+<option value="{{class_name.4}}">{{class_name.4}}</option>
+</select>
+
+<select name='class3'>
+<option value='None'>None</option>
+<option value="{{class_name.0}}">{{class_name.0}}</option>
+<option value="{{class_name.1}}">{{class_name.1}}</option>
+<option value="{{class_name.2}}">{{class_name.2}}</option>
+<option value="{{class_name.3}}">{{class_name.3}}</option>
+<option value="{{class_name.4}}">{{class_name.4}}</option>
+</select>
+
+<select name='class4'>
+<option value='None'>None</option>
+<option value="{{class_name.0}}">{{class_name.0}}</option>
+<option value="{{class_name.1}}">{{class_name.1}}</option>
+<option value="{{class_name.2}}">{{class_name.2}}</option>
+<option value="{{class_name.3}}">{{class_name.3}}</option>
+<option value="{{class_name.4}}">{{class_name.4}}</option>
+</select>
+
+<select name='class5'>
+<option value='None'>None</option>
+<option value="{{class_name.0}}">{{class_name.0}}</option>
+<option value="{{class_name.1}}">{{class_name.1}}</option>
+<option value="{{class_name.2}}">{{class_name.2}}</option>
+<option value="{{class_name.3}}">{{class_name.3}}</option>
+<option value="{{class_name.4}}">{{class_name.4}}</option>
+</select>
+
+<button type = 'submit'>ADD TEACHER</button>
+</form>
+{% else %}
+please login as main_admin
+{% endif %}
+{% else %}
+login
+{% endif %}
+</body>
+</html>

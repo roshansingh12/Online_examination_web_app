@@ -1,0 +1,67 @@
+<html>
+<head>
+<style>
+body{
+background:orange;
+}
+input[type=text]{
+border:1px solid silver;
+border-radius:5px;
+outline:none;
+width:80%;
+margin:1%;
+height:50px;
+font-size:15px;
+color : lightblack;
+}
+input[type=password]{
+border:1px solid silver;
+border-radius:5px;
+outline:none;
+width:80%;
+margin:1%;
+height:50px;
+font-size:15px;
+color : lightblack;
+}
+select{
+outline:none;
+margin-left:1%;
+border:1px solid orange;
+border-radius:5px;
+padding:10px;
+}
+button{
+border:none;
+display:inline-block;
+margin-left:10%;
+padding:10px;
+background:white;
+float:center;
+cursor:pointer;
+}
+option{
+outline:none;
+}
+</style>
+</head>
+<body>
+{% if user.is_authenticated %}
+<a href="create_teacher"><button>CREATE TEACHER</button></a>
+<a href="create_student"><button>CREATE STUDENT</button></a>
+<a href="create_class"><button>CREATE CLASS</button></a><br>
+<form action="Logout" method="POST">{% csrf_token %}
+<br><br><button type='submit'>LOGOUT</button>
+</form>
+{% else %}
+<form action='login' method='POST'>{% csrf_token %}
+<input type='text' name='useremail' placeholder='enter username'>
+<input type='password' name='password' placeholder='enter password'>
+<select name="type" >
+<option value="admin">ADMIN</option>
+</select>
+<button type="submit">LOGIN</button>
+</form>
+{% endif %}
+</body>
+</html>

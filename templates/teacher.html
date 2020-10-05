@@ -1,0 +1,153 @@
+<html>
+<head>
+<style>
+body{
+background:lightblue;
+}
+table{
+border:none;
+}
+.menu{
+margin-left:10%;
+margin-top:5%;
+background:none;
+width:20%;
+z-index:3000;
+position:fixed;
+top:0;
+left:0;
+}
+.menu button{
+outline:none;
+border:none;
+width:200px;
+border-radius:5px;
+background:white;
+padding : 10px;
+cursor:pointer;
+}
+.results button{
+outline:none;
+border:none;
+diplay:inline-block;
+border-radius:5px;
+background:orange;
+padding : 15px;
+margin-right:10px;
+cursor:pointer;
+float:right;
+}
+.results{
+border-radius:15px;
+text-align:center;
+float:left;
+width:auto;
+padding:10px;
+margin-left:400px;
+background:white;
+}
+
+.result{
+border-radius:15px;
+margin-left:100px;
+width:80%;
+margin-top:60px;
+background:orange;
+padding-bottom:10px;
+}
+input[type=text]{
+border:1px solid white;
+border-radius:5px;
+outline:none;
+width:80%;
+margin-left:10%;
+height:50px;
+font-size:15px;
+color : lightblack;
+}
+input[type=password]{
+border:1px solid white;
+border-radius:5px;
+outline:none;
+width:80%;
+margin-left:10%;
+height:50px;
+font-size:15px;
+color : lightblack;
+}
+.result button{
+outline:none;
+border:blue;
+margin-left:10%;
+padding:10px;
+background:white;
+float:center;
+cursor:pointer;
+}
+select{
+outline:none;
+margin-left:10%;
+border:1px solid orange;
+border-radius:5px;
+padding:10px;
+}
+.results .test{
+display:inline-block;
+padding : 15px;
+margin-right:10px;
+}
+</style>
+</head>
+<body>
+{% if user.is_authenticated %}
+<table>
+<tr>
+<td>
+<div class="menu">
+<button >VIEW PROFILE</button><br><br>
+<button >CHECK RESULTS</button><br><br>
+<a href='create_test'><button type="submit">CREATE TEST</button></a><br><br><br>
+<form action="Logout" method="post">{% csrf_token %}
+<button type="submit">LOG OUT</button><br><br></form>
+</div>
+</td>
+<td>
+&nbsp;
+</td>
+<td>
+<div class="results">
+<br>
+
+{% for test in test_list %}
+<div >
+<form action="check_result" method="POST">{% csrf_token %}
+<font color="silver"><input type="hidden" name="test_name" value="{{test}}"><span class="test">TEST NAME : {{test}}</font></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button type="submit">CHECK RESULT</button>
+</form>
+</div>
+{% endfor %}
+</td>
+</tr>
+</table>
+{% else %}
+<div class="result">
+<br>
+<br>
+<form action="login" method="POST">
+<input type="text" placeholder="email : example@gmail.com" name="useremail">
+<br>
+<br>
+<input type="password" placeholder="Password" name="password">
+<br>
+<br>
+<select name="type" >
+<option value="faculty">FACULTY</option>
+</select>
+<a href="#"><button type="submit">LOG IN</button></a>
+</form>
+<br>
+<br>
+</div>
+{% endif %}
+</body>
+</html>

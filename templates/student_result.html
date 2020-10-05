@@ -1,0 +1,119 @@
+<html>
+<head>
+<style>
+body{
+background:silver;
+}
+.main{
+margin-top:5%;
+margin-left:400px;
+margin-bottom:5%;
+background:white;
+padding:20px;
+width:70%;
+border-radius:15px;
+}
+table{
+border:none;
+}
+.menu{
+margin-left:10%;
+margin-top:5%;
+
+width:20%;
+z-index:3000;
+position:fixed;
+top:0;
+left:0;
+}
+.menu button{
+outline:none;
+border:none;
+width:200px;
+border-radius:5px;
+background:white;
+padding : 10px;
+cursor:pointer;
+}
+.s_name{
+display:inline-block;
+padding:10px;
+float:right;
+background:lightgreen;
+border-radius:5px;
+}
+.t_name{
+display:inline-block;
+padding:10px;
+float:right;
+background:red;
+color:white;
+border-radius:5px;
+}
+.teacher_name{
+display:inline-block;
+float:right;
+padding:10px;
+background:orange;
+border-radius:5px;
+}
+.score{
+display:inline-block;
+padding:10px;
+float:right;
+background:skyblue;
+border-radius:5px;
+}
+</style>
+</head>
+<body>
+{% if user_type %}
+<table>
+<tr>
+<td>
+</td>
+<div class="menu">
+<button >VIEW PROFILE</button><br><br>
+<button >CHECK RESULT</button><br><br>
+<a href="students"><button >TAKE TEST</button></a><br><br>
+<form action="Logout" method="post">{% csrf_token %}
+<button type="submit">LOG OUT</button><br><br></form>
+</div>
+<td>
+<div class="main">
+STUDEN NAME : <div class="s_name">{{student_name}}</div><br><br>
+</div>
+<div class="main">
+TEST NAME : <div class="t_name"> {{test_name}}</div><br><br>
+</div>
+<div class="main">
+BY EXAMINER : <div class="teacher_name">{{teacher_name}}</div><br><br>
+</div>
+<div class="main">
+SCORE : <div class="score"> {{score}}</div><br><br>
+</div>
+</td>
+</tr>
+</table>
+{% else %}
+<div class="result">
+<br>
+<br>
+<form action="login" method="POST">
+<input type="text" placeholder="email : example@gmail.com" name="useremail">
+<br>
+<br>
+<input type="password" placeholder="Password" name="password">
+<br>
+<br>
+<select name="type" >
+<option value="student">STUDENT</option>
+</select>
+<a href="#"><button type="submit">LOG IN</button></a>
+</form>
+<br>
+<br>
+</div>
+{% endif %}
+</body>
+</html>

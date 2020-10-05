@@ -1,0 +1,74 @@
+<html>
+<head>
+<style>
+body{
+background:orange;
+}
+input[type=text]{
+border:1px solid silver;
+border-radius:5px;
+outline:none;
+width:80%;
+margin:1%;
+height:50px;
+font-size:15px;
+color : lightblack;
+}
+input[type=password]{
+border:1px solid silver;
+border-radius:5px;
+outline:none;
+width:80%;
+margin:1%;
+height:50px;
+font-size:15px;
+color : lightblack;
+}
+select{
+outline:none;
+margin-left:1%;
+border:1px solid orange;
+border-radius:5px;
+padding:10px;
+}
+button{
+border:none;
+display:inline-block;
+margin-left:10%;
+padding:10px;
+background:white;
+float:center;
+cursor:pointer;
+}
+option{
+outline:none;
+}
+</style>
+</head>
+<body>
+{{error}}
+{% if user.is_authenticated %}
+{% if user_type %}
+<form action="add_student" method="POST">{% csrf_token %}
+<input type='text' name='firstname' placeholder='first name'>
+<input type='text' name='lastname' placeholder='last name'>
+<input type='text' name='username' placeholder='useremail'>
+<input type='password' name='password1' placeholder='password'>
+<input type='password' name='password2' placeholder='re-enter password'>
+
+<select name='class'>
+{% for class in class_name %}
+
+<option name="{{class.0}}" value="{{class.0}}">{{class.0}}</option><br>
+{% endfor %}
+</select>
+<button type = 'submit'>Add student</button>
+</form>
+{% else %}
+please login as admin
+{% endif %}
+{% else %}
+login
+{% endif %}
+</body>
+</html>
